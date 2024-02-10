@@ -3,6 +3,7 @@ name: Update JSON
 on:
   schedule:
     - cron: '0 0 * * *' # This will run the action every day at midnight
+  workflow_dispatch:
 
 jobs:
   update:
