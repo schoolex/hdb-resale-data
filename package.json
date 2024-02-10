@@ -1,0 +1,15 @@
+{
+    "name": "hdb-resale-dat",
+    "version": "1.0.0",
+    "description": "",
+    "main": "getData.js",
+    "scripts": {
+        "start": "node getData.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "axios": "^0.21.1"
+    }
+}
