@@ -46,7 +46,7 @@ function downloadCSV() {
 
 function processCSV(path) {
   console.log("Reading CSV...")
-  fs.readFile(path, 'utf8', function(err, csvContent) {
+  fs.readFile(path, 'utf8', function (err, csvContent) {
     if (err) {
       console.error('Error:', err);
       return;
@@ -57,18 +57,18 @@ function processCSV(path) {
     const headers = lines[0].split(',');
     const results = {};
 
-    for(let i = 1; i < lines.length; i++) {
+    for (let i = 1; i < lines.length; i++) {
       const row = lines[i].split(',');
       const data = headers.reduce((obj, header, index) => {
         obj[header] = row[index];
         return obj;
       }, {});
-      
+
       // Skip rows with missing or undefined values
       if (!data.month || !data.town || !data.flat_type || !data.resale_price) {
         continue;
       }
-      
+
       if (!results[data.month]) {
         results[data.month] = {};
       }
@@ -81,8 +81,10 @@ function processCSV(path) {
           count: 0,
         };
       }
-      results[data.month][data.town][data.flat_type].sum += parseInt(data.resale_price, 10);
-      results[data.month][data.town][data.flat_type].count += 1;
+      if (data.lease_commence_date > 1990) {
+        results[data.month][data.town][data.flat_type].sum += parseInt(data.resale_price, 10);
+        results[data.month][data.town][data.flat_type].count += 1;
+      }
     }
 
     const averages = JSON.parse(JSON.stringify(results));
@@ -93,7 +95,7 @@ function processCSV(path) {
         }
       }
     }
-    fs.writeFile('averages.json', JSON.stringify(averages, null, 2), 'utf8', function(err) {
+    fs.writeFile('averages.json', JSON.stringify(averages, null, 2), 'utf8', function (err) {
       if (err) {
         console.error('Error:', err);
         return;
