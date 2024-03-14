@@ -85,7 +85,7 @@ def process_csv(path):
     averages = process_results(results_without_filter, results_with_filter)
 
     # Write to json
-    write_to_json(averages, "averages.json")
+    write_to_json(averages, "averages2.json")
 
 
 def process_results(results_without_filter, results_with_filter):
