@@ -27,6 +27,7 @@ jobs:
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add prices.json
-        git commit -m "Update prices.json" -a
+        git add output.csv
+        git add averages2.json
+        git commit -m "Update prices" -a
         git push
