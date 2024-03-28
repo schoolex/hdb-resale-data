@@ -24,7 +24,7 @@ def download_csv():
     print("Obtain download link....")
     response = requests.post(api_url, headers=headers, json=payload)
     data = response.json()
-    csv_url = data["url"]
+    csv_url = data['data']["url"]
     print("Downloading CSV...")
     csv_content = requests.get(csv_url).text
     print("Saving CSV...")
