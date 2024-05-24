@@ -36,6 +36,8 @@ def get_df(path):
     print("Reading CSV...")
     df = pd.read_csv(path)
     print("Processing CSV...")
+    # Replace the values in the town column that has 'CENTRAL AREA' with 'OUTRAM'
+    df["town"] = df["town"].replace("CENTRAL AREA", "OUTRAM")
 
     df["resale_price"] = df["resale_price"].astype(int)
     df["psf"] = df["resale_price"] / (df["floor_area_sqm"] * 10.7689)
